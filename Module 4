@@ -30,15 +30,4 @@ ggplot(docdf2, aes(Doctor, bp, fill = rating)) +
 ggplot(docdf2, aes(bp, stat= "count")) +
 geom_histogram()
 
-hist(bp)
-hist(rating)
 
-str(docdf2)
-
-
-boxplot(bp~Doctor+rating, data = docdf2)
-
-boxplot(bp~first+second+final, data = docdf)
-
-
-boxplot('value', data= docdf2)
