@@ -1,0 +1,44 @@
+library(ggplot2)
+library(reshape2)
+
+Frequency <- c(0.6, 0.3, 0.4, 0.4, 0.2, 0.6, 0.3, 0.4, 0.9, 0.2)
+bloodp <- c(103, 87, 32, 42, 59, 109, 78, 205, 135, 176)
+first <- c('bad', 'bad', 'bad', 'bad', 'good', 'good', 'good', 'good', 'na', 'bad')
+second <- c('low', 'low', 'high', 'high', 'low', 'low', 'high', 'high', 'high', 'high')
+final <- c('low', 'high', 'low', 'high', 'low', 'high', 'low', 'high', 'high', 'high')
+
+
+frequency <- c(0.6, 0.3, 0.4, 0.4, 0.2, 0.6, 0.3, 0.4, 0.9, 0.2)
+bp <- c(103, 87, 32, 42, 59, 109, 78, 205, 135, 176)
+first <- c( 0, 0, 0, 0, 1, 1, 1, 1, 'na', 0)
+second <- c(0, 0, 1, 1, 0, 0, 1, 1, 1, 1)
+final <- c(0, 1, 0, 1, 0, 1, 0, 1, 1, 1)
+
+rating <- docdf2[,3]
+
+docdf <- data.frame( frequency, bp, first, second, final)
+
+docdf <- docdf[-9,]
+
+docdf2 <- melt(docdf, id.vars =c('bp'), measure.vars = c('first', 'second', 'final') , variable.name = 'Doctor' , value.name = 'rating')
+
+docdf2$rating <- factor(docdf2$rating)
+
+ggplot(docdf2, aes(Doctor, bp, fill = rating)) +
+  geom_boxplot()
+
+ggplot(docdf2, aes(bp, stat= "count")) +
+geom_histogram()
+
+hist(bp)
+hist(rating)
+
+str(docdf2)
+
+
+boxplot(bp~Doctor+rating, data = docdf2)
+
+boxplot(bp~first+second+final, data = docdf)
+
+
+boxplot('value', data= docdf2)
