@@ -1,0 +1,10 @@
+library(ggplot2)
+
+
+# load dataset
+data("iris")
+
+# Creates a scatter point with Sepal Width and Length as x and y axis colored by different species
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point(size = 2) +
+  labs(title = "Sepal Length vs Sepal Width", x = "Sepal Length", y = "Sepal Width")
