@@ -1,0 +1,15 @@
+library(ggplot2)
+
+car_df <- mtcars
+
+
+ggplot(car_df, aes(car_df$gear, )) +
+  geom_histogram(binwidth = 1, color = 'black', fill = 'skyblue' ) +
+  labs(x = "Number of Gears", y = "Frequency", title = "Histogram of Gear Distribution") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(car_df, aes(mpg,wt)) +
+geom_point()+
+  labs(x = "Horsepower", y = "Weight", title = "Scatterplot of Weight vs Horsepower") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme(plot.title = element_text(hjust = 0.5))
