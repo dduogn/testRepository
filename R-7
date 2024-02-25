@@ -1,0 +1,35 @@
+# Creates S3 object
+BookS3 <- list(
+  title = "The Lord of the Rings",
+  author = "J. R. R. Tolkien",
+  genre = "High fantasy",
+  year = 1954,
+  available = TRUE
+)
+
+BookS3
+
+
+# Create class
+setClass(
+  
+  Class = "BookS4",
+  representation(
+  title = 'character',
+  author = 'character',
+  genre = 'character',
+  year = 'numeric',
+  available = 'logical'
+  ))
+
+
+#creates a S4 object based on BookS4 class
+Book <- new('BookS4', 
+            title = "The Lord of the Rings",
+            author = "J. R. R. Tolkien",
+            genre = "High fantasy",
+            year = 1954,
+            available = TRUE
+            )
+
+Book
