@@ -1,0 +1,16 @@
+library(pryr)
+library(plyr)
+
+student <- read.table('Assignment 6 Dataset.txt', header = TRUE, sep=',')
+
+
+StudentAverage = ddply(student,"Sex",transform,Grade.Average=mean(Grade))
+
+
+
+
+
+
+i_students <- subset(StudentAverage, grepl("i", StudentAverage$Name, ignore.case=T))
+
+write.table(i_students, 'Students_Gendered_Mean', sep = ',')
