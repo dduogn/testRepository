@@ -1,0 +1,84 @@
+---
+title: "Module 12"
+output: html_document
+date: "2024-03-31"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Bookstuff
+
+The first function in this package is bookFrame() which creates a dataframe named books_df with author, genre, and title as column names.
+
+```{r bookframe}
+bookFrame <- function() {
+  books_df <- data.frame(
+    author = character(),
+    genre = character(),
+    title = character(),
+    stringsAsFactors = FALSE
+  )
+  assign("books_df", books_df, envir = .GlobalEnv)  # Store in the global environment
+}
+
+# Example
+
+bookFrame()
+books_df
+```
+
+## Adding books
+
+The next function lets you add books to the dataframe. This function takes in 3 variables author, genre, and title and add that to the books_df data frame.
+
+```{r pressure, echo=FALSE}
+bookAdd <- function(author, genre, title) {
+  # Create a new row with the book details
+  new_book <- data.frame(author = author,
+                         genre = genre,
+                         title = title,
+                         stringsAsFactors = FALSE)
+  
+  # Append the new book row to the existing data frame
+  books_df <<- rbind(books_df, new_book)
+  
+  # Print the updated data frame
+  print(books_df)
+}
+
+# Example
+bookAdd('Gabrielle Zevin', 'Fiction','Tomorrow, and Tomorrow, and Tomorrow')
+```
+
+
+
+
+## Exporting books
+
+The next function exports the dataframe as a .csv file named books.csv
+
+
+```{r bookExport}
+
+bookExport <- function() { 
+  write.csv(books_df, 'books.csv', row.names = FALSE)
+  
+}
+
+bookExport()
+
+```
+## Removing books
+
+The last function lets you add remove books from the dataframe. This function takes in the title of the book and keeps everything in the dataframe that doesn't match the title
+
+```{r bookRemove}
+bookRemove <- function(title) {
+
+    books_df <<- books_df[books_df$title != title, ]
+    print(books_df)
+  }
+
+bookRemove('Tomorrow, and Tomorrow, and Tomorrow')
